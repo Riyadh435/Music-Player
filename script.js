@@ -190,38 +190,84 @@ audio.addEventListener('ended', () => {
 });
 
 // Update search functionality
+const searchInput = document.getElementById('searchInput');
+const searchSuggestions = document.getElementById('searchSuggestions');
+
+// Update search input handler
+searchInput.addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase().trim();
+    const filteredSongs = songs.filter(song => 
+        song.name.toLowerCase().includes(searchTerm) ||
+        song.artist.toLowerCase().includes(searchTerm)
+    );
+    
+    updateSuggestions(filteredSongs);
+    updateSongGrid(filteredSongs);
+});
+
+// Update song grid with original indices
 function updateSongGrid(filteredSongs) {
     const grid = document.querySelector('.grid-container');
     grid.innerHTML = '';
     
-    filteredSongs.forEach((song) => {
-        // Find the original index in the main songs array
-        const originalIndex = songs.findIndex(s => 
-            s.file === song.file && 
-            s.name === song.name && 
-            s.artist === song.artist
+    filteredSongs.forEach(filteredSong => {
+        // Find original index in main songs array
+        const originalIndex = songs.findIndex(song => 
+            song.file === filteredSong.file &&
+            song.name === filteredSong.name &&
+            song.artist === filteredSong.artist
         );
         
         const gradient = generateGradient(originalIndex);
-        
-        const card = document.createElement('div');
-        card.className = 'song-card';
-        card.innerHTML = `
-            <div class="card-image" style="background: ${gradient}">
-                <img src="Pictures/${song.image}" onerror="this.remove()">
-                <button class="play-button">▶</button>
-            </div>
-            <h3 class="card-title">${song.name}</h3>
-            <p class="card-artist">${song.artist}</p>
-        `;
-        
-        card.onclick = () => {
-            changeSong(originalIndex);  // Use original index
-            if (!isPlaying) togglePlayPause();
-        };
-        
+        const card = createSongCard(filteredSong, originalIndex, gradient);
         grid.appendChild(card);
     });
+}
+
+// Create song card with correct original index
+function createSongCard(song, originalIndex, gradient) {
+    const card = document.createElement('div');
+    card.className = 'song-card';
+    card.innerHTML = `
+        <div class="card-image" style="background: ${gradient}">
+            <img src="Pictures/${song.image}" onerror="this.remove()">
+            <button class="play-button">▶</button>
+        </div>
+        <h3 class="card-title">${song.name}</h3>
+        <p class="card-artist">${song.artist}</p>
+    `;
+    
+    card.onclick = () => {
+        changeSong(originalIndex);
+        if (!isPlaying) togglePlayPause();
+    };
+    
+    return card;
+}
+
+// Update suggestions to use original indices
+function updateSuggestions(filteredSongs) {
+    searchSuggestions.innerHTML = '';
+    
+    filteredSongs.forEach(filteredSong => {
+        const originalIndex = songs.findIndex(song => 
+            song.file === filteredSong.file &&
+            song.name === filteredSong.name &&
+            song.artist === filteredSong.artist
+        );
+        
+        const div = document.createElement('div');
+        div.className = 'suggestion-item';
+        div.textContent = `${filteredSong.name} - ${filteredSong.artist}`;
+        div.onclick = () => {
+            changeSong(originalIndex);
+            searchInput.value = '';
+            searchSuggestions.style.display = 'none';
+        };
+        searchSuggestions.appendChild(div);
+    });
+    
+    searchSuggestions.style.display = filteredSongs.length ? 'block' : 'none';
 }
 
 // Add proper audio event listeners
@@ -278,51 +324,6 @@ audio.addEventListener('error', (e) => {
 initPlaylist();
 audio.src = songs[0].file;  // Set initial song without showing detail view
 updatePlayer();
-
-// Add search functionality
-const searchInput = document.getElementById('searchInput');
-searchInput.addEventListener('input', (e) => {
-    const searchTerm = e.target.value.toLowerCase();
-    const suggestions = document.getElementById('searchSuggestions');
-    
-    if (searchTerm.length === 0) {
-        suggestions.innerHTML = '';
-        suggestions.style.display = 'none';
-        return;
-    }
-
-    const filteredSongs = songs.filter(song => 
-        song.name.toLowerCase().includes(searchTerm) ||
-        song.artist.toLowerCase().includes(searchTerm)
-    ).slice(0, 5); // Show top 5 results
-
-    updateSuggestions(filteredSongs);
-    updateSongGrid(filteredSongs);
-});
-
-function updateSuggestions(songs) {
-    const suggestions = document.getElementById('searchSuggestions');
-    suggestions.innerHTML = '';
-    
-    songs.forEach(song => {
-        const div = document.createElement('div');
-        div.className = 'suggestion-item';
-        div.textContent = `${song.name} - ${song.artist}`;
-        div.onclick = () => {
-            const originalIndex = songs.findIndex(s => 
-                s.file === song.file && 
-                s.name === song.name && 
-                s.artist === song.artist
-            );
-            changeSong(originalIndex);
-            searchInput.value = '';
-            suggestions.style.display = 'none';
-        };
-        suggestions.appendChild(div);
-    });
-    
-    suggestions.style.display = songs.length ? 'block' : 'none';
-}
 
 // Close suggestions when clicking outside
 document.addEventListener('click', (e) => {
