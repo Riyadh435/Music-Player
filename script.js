@@ -1,40 +1,40 @@
 // Manually add your song files here
 const songs = [
     { 
-        name: 'Christmas Song 1',
-        artist: 'Chill Artist',
-        file: 'songs/christmas-song-01-273026.mp3',
-        image: ''
+        name: '505',
+        artist: 'Arctic Monkeys',
+        file: 'songs/505(48k).mp3',
+        image: '505.png'
     },
     { 
-        name: 'Christmas Song 2',
-        artist: 'Nature Sounds',
-        file: 'songs/christmas-song-02-273025.mp3',
-        image: 'cover2.jpg'
+        name: 'Space Song',
+        artist: 'Depression Cherry',
+        file: 'songs/Beach_House_-_Space_Song(48k).mp3',
+        image: 'space.png'
     },
     { 
-        name: 'Creepy Song',
-        artist: 'Relaxation Studio',
-        file: 'songs/creepy-song-276076.mp3',
-        image: 'cover3.jpg'
+        name: 'Wildflower',
+        artist: 'Billie Eilish',
+        file: 'songs/Billie_Eilish_-_WILDFLOWER__Official_Lyric_Video_(128k).mp3',
+        image: 'wild.png'
     },
     {
-        name: 'Happy Birthday',
-        artist: 'Chill Artist',
-        file: 'songs/happy-birthday-254480.mp3',
-        image: 'happybirthday.png'
+        name: 'Beanie',
+        artist: 'Chezile',
+        file: 'songs/Chezile_-_Beanie__Official_Visualizer_(128k).mp3',
+        image: 'beanie.png'
     },
     {
-        name: 'Lapupu',
-        artist: 'Chill Artist',
-        file: 'songs/lapupu-song-274773.mp3',
-        image: 'lapupu.png'
+        name: 'HUSN',
+        artist: 'Anuv Jain',
+        file: 'songs/Anuv_Jain_-_HUSN__Official_Video_(48k).mp3',
+        image: 'husn.png'
     },
     {
-        name: 'Tera Roothna',
-        artist: 'Chill Artist',
-        file: 'songs/romantic-song-tera-roothna-by-ashir-hindi-top-trending-viral-song-231771.mp3',
-        image: ''
+        name: 'The Local Train',
+        artist: 'Aalas Ka Pedh',
+        file: 'songs/The_Local_Train_-_Aalas_Ka_Pedh_-_Choo_Lo__Official_Audio_(48k).mp3',
+        image: 'aalas.png'
     },
     {
         name: 'Summer Vibes',
