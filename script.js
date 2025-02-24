@@ -37,11 +37,54 @@ const songs = [
         image: 'aalas.png'
     },
     {
-        name: 'Summer Vibes',
-        artist: 'Chill Artist',
-        file: 'songs/song1.mp3',
-        image: 'my_p.jpg'
+        name: 'End of Beginning',
+        artist: 'Djo',
+        file: 'songs/Djo_-_End_Of_Beginning__Lyrics_(128k).mp3',
+        image: 'end.png'
+    },
+    {
+        name: 'Good for you x One of the girls',
+        artist: 'DreamSoda',
+        file: 'songs/Good_For_You_x_One_Of_The_Girls(128k).mp3',
+        image: 'onegirl.png'
+    },
+    {
+        name: 'Jaane kyun',
+        artist: 'Tanveer Evan',
+        file: 'songs/Jaane_Kyun_-_Tanveer_Evan__Official_Music_Video____Mennu_Bhool_Na_Jaave_.(48k).mp3',
+        image: 'jaane.png'
+    },
+    {
+        name: 'Another Love',
+        artist: 'Tom Odell',
+        file: 'songs/Tom_Odell_-_Another_Love__Lyrics_(48k).mp3',
+        image: 'anotherlove.png'
+    },
+    {
+        name: 'Tumse Mohabbat Hai',
+        artist: 'JalRaj',
+        file: 'songs/Tumse_Mohabbat_Hai_-_JalRaj___Safar___Latest_hindi_song_2020_original(48k).mp3',
+        image: 'tumse.png'
+    },
+    {
+        name: 'Birds of a feather',
+        artist: 'Billie Eilish',
+        file: 'songs/Billie_Eilish_-_BIRDS_OF_A_FEATHER__Official_Music_Video_(128k).mp3',
+        image: 'birds.png'
+    },
+    {
+        name: 'Messy',
+        artist: 'Lola Young',
+        file: 'songs/Lola_Young_-_Messy__Official_Video_(128k).mp3',
+        image: 'messy.png'
+    },
+    {
+        name: 'Pastlives',
+        artist: 'sapientdream',
+        file: 'songs/sapientdream_-_Pastlives__lyrics_(128k).mp3',
+        image: 'pastlives.png'
     }
+
 ];
 
 const audio = new Audio();
